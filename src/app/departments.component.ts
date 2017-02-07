@@ -23,10 +23,28 @@ export class DepartmentsComponent implements OnInit  {
 		this.departmentService.getDepartments().then(departments => this.departments = departments);
 	}
 
+	add(name: string): void {
+	    name = name.trim();
+	    if (!name) { return; }
+	    this.departmentService.create(name)
+	      .then(department => {
+	        this.departments.push(department);
+	        this.selectedDepartment = null;
+	    });
+	}
+
+	delete(department: Department): void {
+	    this.departmentService
+	        .delete(department.id)
+	        .then(() => {
+	          this.departments = this.departments.filter(h => h !== department);
+	          if (this.selectedDepartment === department) { this.selectedDepartment = null; }
+	    });
+	}
+
 	ngOnInit(): void {
     	this.getDepartments();
   	}
-
 
 	onSelect(department: Department): void{
 		this.selectedDepartment = department;
