@@ -8,4 +8,8 @@ export class DepartmentService {
 	getDepartments(): Promise<Department[]>{
 		return Promise.resolve(DEPARTMENTS);
 	}
+	getDepartment(id: number): Promise<Department> {
+ 		 return this.getDepartments()
+             .then(departments => departments.find(department => department.id === id));
+	}
 }

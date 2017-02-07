@@ -1,43 +1,18 @@
-import { Component, OnInit } from '@angular/core';
-
-import { Department } from './department';
-import { DepartmentService } from './department.service';
-
+import { Component } from '@angular/core';
 
 @Component({
+  moduleId: module.id,
   selector: 'my-app',
   template: `
-  <h1>{{title}}</h1>
-  <h2>Departments</h2>
-  <ul class="departments">
-  	<li *ngFor="let department of departments"
-  	[class.selected]="department === selectedDepartment"
-  	(click)="onSelect(department)">
-  	<span class="badge">{{department.id}}</span>{{department.name}}
-  	</li>
-  </ul>
-  <department-detail [department]="selectedDepartment"></department-detail>
+    <h1>{{title}}</h1>
+    <nav>
+      <a routerLink="/dashboard" routerLinkActive="active">Dashboard</a>
+      <a routerLink="/departments" routerLinkActive="active">Departments</a>
+    </nav>
+    <router-outlet></router-outlet>
   `,
-  styleUrls: ['../styles.css'],
-  providers:[DepartmentService]
+  styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit  { 
-	title = 'Company Info';
-	departments: Department[];
-	selectedDepartment: Department;
-
-	constructor(private departmentService: DepartmentService) { }
-
-	getDepartments(){
-		this.departmentService.getDepartments().then(departments => this.departments = departments);
-	}
-
-	ngOnInit(): void {
-    	this.getDepartments();
-  	}
-
-
-	onSelect(department: Department): void{
-		this.selectedDepartment = department;
-	}
+export class AppComponent {
+  title = 'Company Info';
 }

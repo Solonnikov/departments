@@ -1,0 +1,14 @@
+<h2>Departments</h2>
+<ul class="departments">
+	<li *ngFor="let department of departments"
+	[class.selected]="department === selectedDepartment"
+	(click)="onSelect(department)">
+	<span class="badge">{{department.id}}</span>{{department.name}}
+	</li>
+</ul>
+<div *ngIf="selectedDepartment">
+<h2>
+  {{selectedDepartment.name | uppercase}} Department
+</h2>
+<button (click)="gotoDetail()">View Details</button>
+</div>
