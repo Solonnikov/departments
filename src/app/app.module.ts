@@ -16,9 +16,9 @@ import { DepartmentService } from './department.service';
 import { DepartmentSearchComponent } from './department-search.component';
 
 @NgModule({
-  imports: [ BrowserModule, FormsModule, HttpModule, InMemoryWebApiModule.forRoot(InMemoryDataService), AppRoutingModule ],
-  declarations: [ AppComponent, DepartmentDetailComponent, DepartmentsComponent, DashboardComponent, DepartmentSearchComponent ],
-  providers: [ DepartmentService ],
-  bootstrap:    [ AppComponent ]
+    imports: [ BrowserModule, FormsModule, HttpModule, InMemoryWebApiModule.forRoot(InMemoryDataService), AppRoutingModule ],
+    declarations: [ AppComponent, DepartmentDetailComponent, DepartmentsComponent, DashboardComponent, DepartmentSearchComponent ],
+    providers: [ DepartmentService ],
+    bootstrap: [ AppComponent ]
 })
 export class AppModule { }

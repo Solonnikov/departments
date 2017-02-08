@@ -14,10 +14,10 @@ export class DepartmentService {
 	constructor(private http: Http) { }
 
     getDepartments(): Promise<Department[]> {
-      return this.http.get(this.departmentsUrl)
-                 .toPromise()
-                 .then(response => response.json().data as Department[])
-                 .catch(this.handleError);
+        return this.http.get(this.departmentsUrl)
+            .toPromise()
+            .then(response => response.json().data as Department[])
+            .catch(this.handleError);
     }
 
     getDepartment(id: number): Promise<Department> {
@@ -29,16 +29,17 @@ export class DepartmentService {
 	}
 
 	delete(id: number): Promise<void> {
-  	const url = `${this.departmentsUrl}/${id}`;
-  	return this.http.delete(url, {headers: this.headers})
-   	    .toPromise()
-    	.then(() => null)
-   		.catch(this.handleError);
+	  	const url = `${this.departmentsUrl}/${id}`;
+	  	return this.http.delete(url, {headers: this.headers})
+	   	    .toPromise()
+	    	.then(() => null)
+	   	    .catch(this.handleError);
     }
 
 	create(name: string): Promise<Department> {
 	    return this.http
-	        .post(this.departmentsUrl, JSON.stringify({name: name}), {headers: this.headers})
+	        .post(this.departmentsUrl, JSON.stringify({name: name, employees: ['Head of Department']}), 
+	        {headers: this.headers})
 	        .toPromise()
 	        .then(res => res.json().data)
 	        .catch(this.handleError);
@@ -54,8 +55,8 @@ export class DepartmentService {
 	}
 
     private handleError(error: any): Promise<any> {
-    console.error('An error occurred', error);
-    return Promise.reject(error.message || error);
+        console.error('An error occurred', error);
+        return Promise.reject(error.message || error);
     }
 
 }

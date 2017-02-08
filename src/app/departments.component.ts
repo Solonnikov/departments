@@ -27,19 +27,19 @@ export class DepartmentsComponent implements OnInit  {
 	    name = name.trim();
 	    if (!name) { return; }
 	    this.departmentService.create(name)
-	      .then(department => {
-	        this.departments.push(department);
-	        this.selectedDepartment = null;
-	    });
+	        .then(department => {
+	            this.departments.push(department);
+	            this.selectedDepartment = null;
+	        });
 	}
 
 	delete(department: Department): void {
 	    this.departmentService
 	        .delete(department.id)
 	        .then(() => {
-	          this.departments = this.departments.filter(h => h !== department);
-	          if (this.selectedDepartment === department) { this.selectedDepartment = null; }
-	    });
+	            this.departments = this.departments.filter(d => d !== department);
+	            if (this.selectedDepartment === department) { this.selectedDepartment = null; }
+	        });
 	}
 
 	ngOnInit(): void {
@@ -52,5 +52,5 @@ export class DepartmentsComponent implements OnInit  {
 
 	gotoDetail(): void {
   		this.router.navigate(['/detail', this.selectedDepartment.id]);
-}
+    }
 }

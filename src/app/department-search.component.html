@@ -1,10 +1,7 @@
 <div id="search-component">
-  <h4>Department Search</h4>
-  <input #searchBox id="search-box" (keyup)="search(searchBox.value)" />
-  <div>
-    <div *ngFor="let department of departments | async"
-         (click)="gotoDetail(department)" class="search-result" >
-      {{department.name}}
-    </div>
-  </div>
+    <h4>Department Search</h4>
+    <input #searchBox id="search-box" (keyup)="search(searchBox.value)" />
+</div>
+<div *ngFor="let department of departments | async" 
+	(click)="gotoDetail(department)" class="search-result">{{department.name}}
 </div>

@@ -1,22 +1,19 @@
 <h2>Departments</h2>
 <div>
-  <label>Department name:</label> <input #departmentName />
-  <button (click)="add(departmentName.value); departmentName.value=''">
-    Add
-  </button>
+    <label>Department name:</label> <input #departmentName />
+    <button (click)="add(departmentName.value); departmentName.value=''">Add</button>
 </div>
-<ul class="departments">
-	<li *ngFor="let department of departments"
-	[class.selected]="department === selectedDepartment"
-	(click)="onSelect(department)">
-	<span class="badge">{{department.id}}</span>{{department.name}}
-  <button class="delete"
-  (click)="delete(department); $event.stopPropagation()">x</button>
-	</li>
-</ul>
-<div *ngIf="selectedDepartment">
-<h2>
-  {{selectedDepartment.name | uppercase}} Department
-</h2>
-<button (click)="gotoDetail()">View Details</button>
+<div class="details" *ngIf="selectedDepartment">
+    <h2>{{selectedDepartment.name}} Department</h2>
+    <button (click)="gotoDetail()">View Details</button>
+</div>
+<div>
+    <ul class="departments">
+	      <li *ngFor="let department of departments"
+	      [class.selected]="department === selectedDepartment"
+	      (click)="onSelect(department)">
+	          <span class="badge">{{department.id}}</span>{{department.name}}
+            <button class="delete"(click)="delete(department); $event.stopPropagation()">x</button>
+	      </li>
+    </ul>
 </div>

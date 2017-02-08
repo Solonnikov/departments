@@ -64,3 +64,6 @@ button.delete {
   background-color: gray !important;
   color:white;
 }
+.details {
+  margin: 20px 0;
+}

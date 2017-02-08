@@ -14,41 +14,41 @@ import { DepartmentSearchService } from './department-search.service';
 import { Department } from './department';
 
 @Component({
-  moduleId: module.id,
-  selector: 'department-search',
-  templateUrl: './department-search.component.html',
-  styleUrls: [ './department-search.component.css' ],
-  providers: [DepartmentSearchService]
+    moduleId: module.id,
+    selector: 'department-search',
+    templateUrl: './department-search.component.html',
+    styleUrls: [ './department-search.component.css' ],
+    providers: [DepartmentSearchService]
 })
 
 export class DepartmentSearchComponent implements OnInit {
-  departments: Observable<Department[]>;
-  private searchTerms = new Subject<string>();
+    departments: Observable<Department[]>;
+    private searchTerms = new Subject<string>();
   
-  constructor(
-    private departmentSearchService: DepartmentSearchService,
-    private router: Router) {}
+    constructor(
+        private departmentSearchService: DepartmentSearchService,
+        private router: Router) {}
 
-  search(term: string): void {
-    this.searchTerms.next(term);
-  }
-  ngOnInit(): void {
-    this.departments = this.searchTerms
-      .debounceTime(200)        
-      .distinctUntilChanged()   
-      .switchMap(term => term   
+    search(term: string): void {
+        this.searchTerms.next(term);
+    }
+    ngOnInit(): void {
+        this.departments = this.searchTerms
+        .debounceTime(200)        
+        .distinctUntilChanged()   
+        .switchMap(term => term   
 
         ? this.departmentSearchService.search(term)
         
         : Observable.of<Department[]>([]))
-      .catch(error => {
+        .catch(error => {
 
         console.log(error);
         return Observable.of<Department[]>([]);
-      });
-  }
-  gotoDetail(department: Department): void {
-    let link = ['/detail', department.id];
-    this.router.navigate(link);
-  }
-}
+        });
+    }
+    gotoDetail(department: Department): void {
+        let link = ['/detail', department.id];
+        this.router.navigate(link);
+    }
+} 

@@ -3,8 +3,8 @@ import { ActivatedRoute, Params }   from '@angular/router';
 import { Location }                 from '@angular/common';
 
 import 'rxjs/add/operator/switchMap';
-// import { Department } from './department';
 
+import { Department } from './department';
 import { DepartmentService } from './department.service';
 
 @Component({
